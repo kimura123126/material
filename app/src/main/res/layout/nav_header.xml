@@ -4,11 +4,12 @@
     android:layout_height="180dp"
     android:padding="10dp"
     android:background="?attr/colorPrimary">
+    <!--滑动页顶部-->
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/icon_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/a186"
+        android:src="@drawable/a1861"
         android:layout_centerInParent="true"/>
     <TextView
         android:id="@+id/mail"

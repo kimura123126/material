@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+
+<!--卡片布局   也是一个FrameLayout 额外提供了圆角和阴影-->
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="4dp">
+
+    <!--由于卡片式布局没什么好的定位方式，这里用了个LinearLayouot来处理
+
+    android:scaleType="centerCrop" 指定图片缩放模式
+    centerCrop 指按比例填满ImageView超出屏幕的裁掉
+    -->
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <ImageView
             android:id="@+id/fruit_image"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"/>
+            android:layout_height="300dp"
+            android:scaleType="centerCrop" />
+
         <TextView
             android:id="@+id/fruit_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

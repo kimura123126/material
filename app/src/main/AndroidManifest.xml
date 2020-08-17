@@ -8,9 +8,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--Activity若没指定label 则使用 application的label即应用名称-->
         <activity
             android:name=".MainActivity"
-            android:label="Fruits">
+            android:label="壮熊图库">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

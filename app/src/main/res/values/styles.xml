@@ -1,13 +1,28 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Base application theme.
+     Theme.AppCompat.Light.NoActionBar：不带ActionBar,浅色主题，陪衬深色
+     Theme.AppCompat.NoActionBar: 不带ActionBar,深色主题，陪衬浅色
+     colorPrimary：ActionBar
+     colorPrimaryDark:最顶层信号栏
+     colorAccent：悬浮按钮等
+     textColorPrimary: ActionBar文字颜色
+     windowBackgroun:..
+     navigationBarColor:底部栏颜色
+
+
+     -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#61A6DD</item>
+        <item name="colorPrimaryDark">#2196F3</item>
+        <item name="colorAccent">#BAE488</item>
     </style>
+
+
+    <!--指定状态栏颜色为透明-->
     <style name="FruitActivityTheme" parent="AppTheme">
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>

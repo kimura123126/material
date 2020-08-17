@@ -1,21 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<!--
+
+xmlns:app 对应 app:属性 的写法  目的兼容老系统
+DrawerLayout 滑动菜单 比如从屏幕左侧划出
+DrawerLayout为布局 允许放入两个直接子控件：一个主内容，一个划出内容
+
+
+-->
+
+
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<android.support.design.widget.CoordinatorLayout
 
+    <!--DrawLayout的第一个子控件   显示主内容 其内部再设控件
+
+    CoordinatorLayout 可以监听其所有子控件的各种事件，并自动做出合理的响应
+    比如控件随着界面的变化产生偏移
+
+    CoordinatorLayout 相当于一个加强版的FrameLayout
+
+    -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+
+    <!--
+    AppBarLayout 实际上是垂直方向的LinearLayout
+    下面嵌套了Toolbar 目的为了显示被RecyclerView遮住的ToolBar
+
+   然后设置recyclerView的
+    app:layout_behavior = "@string/appbar_scrolling_view_behavior"
+    ToolBar就可正常显示了
+
+    AppBarLayout收到RecyclerView的滚动事件后，内部控件的行为ToolBar如下：
+    app:layout_scrollFlags="scroll|enterAlways|snap"
+
+    scroll 当RecyclerView向上滚动，Toolbar跟着向上并隐藏
+    enterAlways 。。。。。。。。。。。。。。向下滚动并重新显示
+    snap.....。。。。。。。。。。。。。。自动旋转隐藏或显示
+
+    -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <android.support.v7.widget.Toolbar
+<!--
+android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+由于已将程序主题设为浅色，那么ToolBar(替代原来的ActionBar)也是浅色
+文字变为黑色，但是还是可以给ToolBar指定深色主题 即andorid:theme
+
+此时ToolBar上有菜单按钮的话，那么弹出的菜单也是深色，可以指定浅色即
+app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+
+代码设置ToolBar setSupportActionBar(toolbar)
+
+
+
+-->
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -23,8 +70,14 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_scrollFlags="scroll|enterAlways|snap"/>
-    </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.SwipeRefreshLayout
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <!--
+    把想实现下来刷新的控件放其内部即可 一般是RecyclerView
+    顺便把RecyclerView的app:layout_behavior 移到SwipeRefreshLayout
+    -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,32 +85,40 @@
 
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent"/>
 
-        />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
+
+    <!--app:elevation="8dp" 悬浮高度-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_done"
+        app:elevation="8dp"
         />
 
-</android.support.design.widget.CoordinatorLayout>
-   <android.support.design.widget.NavigationView
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <!--
+    DrawLayout的第二个子控件   显示划出内容：分顶部和菜单
+    start 划出方式根据语言不同而不同 一般是左侧划出（中文，英文等）
+
+
+    -->
+   <com.google.android.material.navigation.NavigationView
        android:id="@+id/nav_view"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:layout_gravity="start"
        app:menu="@menu/nav_menu"
-       app:headerLayout="@layout/nav_header"
-       />
+       app:headerLayout="@layout/nav_header" />
 
 
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
